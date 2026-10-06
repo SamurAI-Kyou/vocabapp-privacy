@@ -30,6 +30,8 @@
 <li><strong>アカウント情報（任意）</strong>：アカウントを作成する場合、本アプリは 8 桁の数字 ID を自動発行し、利用者が設定したパスワードと共に認証基盤（Google Firebase Authentication）に登録します。氏名・メールアドレス・電話番号などの個人を直接特定する情報は収集しません。パスワードは認証基盤側で安全に管理され、本アプリ運営者がパスワードそのものを参照することはできません。</li>
 <li><strong>学習データ</strong>：利用者が登録した英単語・訳・メモ・例文・日付。</li>
 <li><strong>設定</strong>：表示言語（日本語／韓国語）などのアプリ設定。</li>
+<li><strong>カメラ・フォトライブラリ（任意）</strong>：「写真から取り込む」機能を利用する場合に限り、カメラまたはフォトライブラリへのアクセスを求めます。選択・撮影した画像は、そこに印刷された英単語を読み取る目的にのみ使用します。画像を本アプリのサーバーや端末内に保存し続けることはありません。</li>
+<li><strong>マイク（任意）</strong>：「音声で入力」機能を利用する場合に限り、マイクへのアクセスを求めます。取得した音声は、話された英単語を文字に起こす目的にのみ使用します。音声ファイルは端末内の一時領域に短時間だけ置かれ、文字起こしが終わり次第（失敗した場合も含めて）削除されます。</li>
 </ul>
 
 <h3>2. 情報の保存場所</h3>
@@ -41,7 +43,9 @@
 <h3>3. AI（生成AI）への送信</h3>
 <ul>
 <li>「AIで生成」機能を利用した場合に限り、利用者が入力した単語・語句が、翻訳・解説・例文を生成する目的で Google の生成AI（Gemini API）へ送信されます。</li>
-<li>「写真から取り込み」機能を利用した場合に限り、選択・撮影した写真が、文字を読み取る目的で Google の生成AI（Gemini API）へ送信されます。</li>
+<li>「写真から取り込む」機能を利用した場合、選択・撮影した<strong>画像データ</strong>が、そこに印刷された英単語を読み取る目的で Gemini API へ送信されます。</li>
+<li>「音声で入力」機能を利用した場合、マイクで取得した<strong>音声データ</strong>が、話された英単語を文字に起こす目的で Gemini API へ送信されます。音声は送信後に端末内の一時ファイルが削除され、本アプリ運営者のサーバーやクラウドデータベースに保存されることはありません。</li>
+<li>いずれの送信も、利用者がその機能を操作したときに限られます。本アプリがバックグラウンドで画像や音声を取得・送信することはありません。</li>
 <li>音声読み上げ機能を利用した場合に限り、読み上げ対象の英文テキストが、音声合成のため Google Cloud Text-to-Speech へ送信されます。</li>
 <li>本アプリは不適切な出力を抑制する安全設定を有効にしています。</li>
 <li>Google における当該データの取り扱いは Google のプライバシーポリシーに従います。</li>
@@ -49,7 +53,7 @@
 
 <h3>4. 第三者提供・広告・トラッキング</h3>
 <ul>
-<li>本アプリは、上記の機能提供（認証・クラウド保存・AI生成・写真の文字読み取り・音声合成）に必要な範囲を除き、利用者の情報を第三者に提供しません。</li>
+<li>本アプリは、上記の機能提供（認証・クラウド保存・AI生成・写真の文字読み取り・音声の文字起こし・音声合成）に必要な範囲を除き、利用者の情報を第三者に提供しません。</li>
 <li>本アプリは広告を表示せず、行動追跡（トラッキング）や解析目的のデータ収集を行いません。</li>
 </ul>
 
@@ -85,6 +89,8 @@
 <li><strong>Account information (optional):</strong> If you create an account, the App generates an 8-digit numeric ID and registers it together with your chosen password in our authentication provider (Google Firebase Authentication). We do not collect directly identifying information such as your name, email address, or phone number. Passwords are managed securely by the authentication provider and are not accessible to the App's operator.</li>
 <li><strong>Learning data:</strong> The words, translations, notes, example sentences, and dates you save.</li>
 <li><strong>Settings:</strong> App settings such as display language (Japanese/Korean).</li>
+<li><strong>Camera and photo library (optional):</strong> Only when you use "import from photo", the App requests access to your camera or photo library. The selected or captured image is used solely to read the English words printed in it. The App does not keep the image on its servers or on your device.</li>
+<li><strong>Microphone (optional):</strong> Only when you use "voice input", the App requests microphone access. The captured audio is used solely to transcribe the English word you spoke. The audio file is held in a temporary location on your device for a short time and is deleted as soon as transcription finishes — including when it fails.</li>
 </ul>
 
 <h3>2. Where Data Is Stored</h3>
@@ -96,7 +102,9 @@
 <h3>3. Generative AI</h3>
 <ul>
 <li>Only when you use the "Generate with AI" feature, the word or phrase you enter is sent to Google's generative AI (Gemini API) to produce a translation, notes, and examples.</li>
-<li>Only when you use the "Import from photo" feature, the photo you select or take is sent to Google's generative AI (Gemini API) to read the text in it.</li>
+<li>When you use "import from photo", the selected or captured <strong>image</strong> is sent to the Gemini API to read the English words printed in it.</li>
+<li>When you use "voice input", the <strong>audio</strong> captured by the microphone is sent to the Gemini API to transcribe the English word you spoke. After sending, the temporary audio file on your device is deleted; audio is never stored on the operator's servers or in the cloud database.</li>
+<li>Each of these transfers happens only when you operate that feature. The App never captures or sends images or audio in the background.</li>
 <li>Only when you use text-to-speech, the English text to be read aloud is sent to Google Cloud Text-to-Speech to synthesize audio.</li>
 <li>The App enables safety settings to suppress inappropriate output.</li>
 <li>Google's handling of such data is governed by Google's Privacy Policy.</li>
@@ -104,7 +112,7 @@
 
 <h3>4. No Third-Party Sharing, Ads, or Tracking</h3>
 <ul>
-<li>We do not share your information with third parties except as needed to provide the features above (authentication, cloud storage, AI generation, text recognition from photos, speech synthesis).</li>
+<li>We do not share your information with third parties except as needed to provide the features above (authentication, cloud storage, AI generation, text recognition from photos, speech-to-text transcription, speech synthesis).</li>
 <li>The App shows no ads and performs no behavioral tracking or analytics data collection.</li>
 </ul>
 
